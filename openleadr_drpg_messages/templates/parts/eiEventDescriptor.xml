@@ -1,0 +1,24 @@
+<ns1:eventDescriptor>
+    <ns1:eventID>{{ event.event_descriptor.event_id }}</ns1:eventID>
+    <ns1:modificationNumber>{{ event.event_descriptor.modification_number }}</ns1:modificationNumber>
+    {% if event.event_descriptor.modification_date_time is defined and event.event_descriptor.modification_date_time is not none %}
+    <ns1:modificationDateTime>{{ event.event_descriptor.modification_date_time|datetimeformat }}</ns1:modificationDateTime>
+    {% endif %}
+    {% if event.event_descriptor.modification_reason is defined and event.event_descriptor.modification_reason is not none %}
+    <ns1:modificationReason>{{ event.event_descriptor.modification_reason }}</ns1:modificationReason>
+    {% endif %}
+    {%if event.event_descriptor.priority is not none %}
+    <ns1:priority>{{ event.event_descriptor.priority }}</ns1:priority>
+    {% endif %}
+    <ns1:eiMarketContext>
+        <ns10:marketContext>{{ event.event_descriptor.market_context }}</ns10:marketContext>
+    </ns1:eiMarketContext>
+    <ns1:createdDateTime>{{ event.event_descriptor.created_date_time|datetimeformat }}</ns1:createdDateTime>
+    <ns1:eventStatus>{{ event.event_descriptor.event_status }}</ns1:eventStatus>
+    {% if event.event_descriptor.test_event is defined and event.event_descriptor.test_event is not none %}
+    <ns1:testEvent>{{ event.event_descriptor.test_event|booleanformat }}</ns1:testEvent>
+    {% endif %}
+    {% if event.event_descriptor.vtn_comment is defined and event.event_descriptor.vtn_comment is not none %}
+    <ns1:vtnComment>{{ event.event_descriptor.vtn_comment }}</ns1:vtnComment>
+    {% endif %}
+</ns1:eventDescriptor>

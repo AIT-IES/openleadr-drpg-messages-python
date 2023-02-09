@@ -1,0 +1,39 @@
+<ns1:eiTarget>
+    {% for target in event.targets %}
+        {% if target.emix_interfaces %}
+            {% for emix_interface in target.emix_interface %}
+                {% include 'parts/emixInterface.xml' %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    {% for target in event.targets %}
+        {% if target.group_id %}
+            <ns1:groupID>{{ target.group_id }}</ns1:groupID>
+        {% endif %}
+    {% endfor %}
+
+    {% for target in event.targets %}
+        {% if target.group_name %}
+            <ns1:groupName>{{ target.group_name }}</ns1:groupName>
+        {% endif %}
+    {% endfor %}
+
+    {% for target in event.targets %}
+        {% if target.resource_id %}
+            <ns1:resourceID>{{ target.resource_id }}</ns1:resourceID>
+        {% endif %}
+    {% endfor %}
+
+    {% for target in event.targets %}
+        {% if target.ven_id %}
+            <ns1:venID>{{ target.ven_id }}</ns1:venID>
+        {% endif %}
+    {% endfor %}
+
+    {% for target in event.targets %}
+        {% if target.party_id %}
+            <ns1:partyID>{{ target.party_id }}</ns1:partyID>
+        {% endif %}
+    {% endfor %}
+</ns1:eiTarget>

@@ -1,0 +1,33 @@
+<ns1:eiActivePeriod>
+    <ns7:properties>
+        <ns7:dtstart>
+            <ns7:date-time>{{ event.active_period.dtstart|datetimeformat }}</ns7:date-time>
+        </ns7:dtstart>
+        <ns7:duration>
+            <ns7:duration>{{ event.active_period.duration|timedeltaformat }}</ns7:duration>
+        </ns7:duration>
+        {% if event.active_period.tolerance %}
+        <ns7:tolerance>
+            <ns7:tolerate>
+                <ns7:startafter>{{ event.active_period.tolerance.startafter|timedeltaformat }}</ns7:startafter>
+            </ns7:tolerate>
+        </ns7:tolerance>
+        {% endif %}
+        {% if event.active_period.notification_period %}
+        <ns1:x-eiNotification>
+            <ns7:duration>{{ event.active_period.notification_period|timedeltaformat }}</ns7:duration>
+        </ns1:x-eiNotification>
+        {% endif %}
+        {% if event.active_period.ramp_up_period %}
+        <ns1:x-eiRampUp>
+            <ns7:duration>{{ event.active_period.ramp_up_period|timedeltaformat }}</ns7:duration>
+        </ns1:x-eiRampUp>
+        {% endif %}
+        {% if event.active_period.recovery_period %}
+        <ns1:x-eiRecovery>
+            <ns7:duration>{{ event.active_period.recovery_period|timedeltaformat }}</ns7:duration>
+        </ns1:x-eiRecovery>
+        {% endif %}
+    </ns7:properties>
+    <ns7:components xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+</ns1:eiActivePeriod>

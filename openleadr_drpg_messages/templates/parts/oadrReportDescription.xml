@@ -1,0 +1,53 @@
+<ns3:oadrReportDescription>
+  <ns1:rID>{{ report_description.r_id }}</ns1:rID>
+  {% if report_description.report_subject and report_description.report_subject.end_device_asset.mrid %}
+  <ns1:reportSubject>
+    <power:endDeviceAsset>
+      <power:mrid>{{ report_description.report_subject.end_device_asset.mrid }}</power:mrid>
+    </power:endDeviceAsset>
+  </ns1:reportSubject>
+  {% endif %}
+
+  {% if report_description.report_data_source %}
+  <ns1:reportDataSource>
+    {% if report_description.report_data_source.emix_interfaces %}
+        {% for emix_interface in target.emix_interface %}
+            {% include 'parts/emixInterface.xml' %}
+        {% endfor %}
+    {% endif %}
+
+    {% if report_description.report_data_source.group_id %}
+        <ns1:groupID>{{ report_description.report_data_source.group_id }}</ns1:groupID>
+    {% endif %}
+
+    {% if report_description.report_data_source.group_name %}
+        <ns1:groupName>{{ report_description.report_data_source.group_name }}</ns1:groupName>
+    {% endif %}
+
+    {% if report_description.report_data_source.resource_id %}
+        <ns1:resourceID>{{ report_description.report_data_source.resource_id }}</ns1:resourceID>
+    {% endif %}
+
+    {% if report_description.report_data_source.ven_id %}
+        <ns1:venID>{{ report_description.report_data_source.ven_id }}</ns1:venID>
+    {% endif %}
+
+    {% if report_description.report_data_source.party_id %}
+        <ns1:partyID>{{ report_description.report_data_source.party_id }}</ns1:partyID>
+    {% endif %}
+  </ns1:reportDataSource>
+  {% endif %}
+  <ns1:reportType>{{ report_description.report_type }}</ns1:reportType>
+  {% include 'parts/reportDescriptionEmix.xml' %}
+  <ns1:readingType>{{ report_description.reading_type }}</ns1:readingType>
+  {% if report_description.market_context %}
+  <emix:marketContext>{{ report_description.market_context }}</emix:marketContext>
+  {% endif %}
+  {% if report_description.sampling_rate %}
+  <ns3:oadrSamplingRate>
+    <ns3:oadrMinPeriod>{{ report_description.sampling_rate.min_period|timedeltaformat }}</ns3:oadrMinPeriod>
+    <ns3:oadrMaxPeriod>{{ report_description.sampling_rate.max_period|timedeltaformat }}</ns3:oadrMaxPeriod>
+    <ns3:oadrOnChange>{{ report_description.sampling_rate.on_change|booleanformat }}</ns3:oadrOnChange>
+  </ns3:oadrSamplingRate>
+  {% endif %}
+</ns3:oadrReportDescription>

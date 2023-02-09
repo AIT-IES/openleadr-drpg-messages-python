@@ -1,0 +1,2 @@
+include openleadr_drpg_messages/templates/*.xml
+include openleadr_drpg_messages/templates/parts/*.xml

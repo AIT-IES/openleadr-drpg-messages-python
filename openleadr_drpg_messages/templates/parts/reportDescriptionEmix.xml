@@ -1,0 +1,16 @@
+  {% if report_description.measurement is defined and report_description.measurement is not none %}
+  <{{ report_description.measurement.ns }}:{{ report_description.measurement.name }} xmlns:scale="http://docs.oasis-open.org/ns/emix/2011/06/siscale" xmlns:power="http://docs.oasis-open.org/ns/emix/2011/06/power" >
+    <{{ report_description.measurement.ns }}:itemDescription>{{ report_description.measurement.description }}</{{ report_description.measurement.ns }}:itemDescription>
+    <{{ report_description.measurement.ns }}:itemUnits>{{ report_description.measurement.unit }}</{{ report_description.measurement.ns }}:itemUnits>
+    {% if report_description.measurement.pulse_factor %}<ns3:pulseFactor>{{ report_description.measurement.pulse_factor }}</ns3:pulseFactor>{% else %}
+    <ns4:siScaleCode>{{ report_description.measurement.scale }}</ns4:siScaleCode>
+    {% endif %}
+    {% if report_description.measurement.power_attributes %}
+    <ns6:powerAttributes>
+      <ns6:hertz>{{ report_description.measurement.power_attributes.hertz }}</ns6:hertz>
+      <ns6:voltage>{{ report_description.measurement.power_attributes.voltage }}</ns6:voltage>
+      <ns6:ac>{{ report_description.measurement.power_attributes.ac|booleanformat }}</ns6:ac>
+    </ns6:powerAttributes>
+    {% endif %}
+  </{{ report_description.measurement.ns }}:{{ report_description.measurement.name }}>
+  {% endif %}

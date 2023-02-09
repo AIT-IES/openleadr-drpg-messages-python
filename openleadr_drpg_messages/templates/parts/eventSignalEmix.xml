@@ -1,0 +1,16 @@
+  {% if event_signal.measurement is defined and event_signal.measurement is not none %}
+  <{{ event_signal.measurement.ns }}:{{ event_signal.measurement.name }}>
+    <{{ event_signal.measurement.ns }}:itemDescription>{{ event_signal.measurement.description }}</{{ event_signal.measurement.ns }}:itemDescription>
+    <{{ event_signal.measurement.ns }}:itemUnits>{{ event_signal.measurement.unit }}</{{ event_signal.measurement.ns }}:itemUnits>
+    {% if event_signal.measurement.pulse_factor %}<ns3:pulseFactor>{{ event_signal.measurement.pulse_factor }}</ns3:pulseFactor>{% else %}
+    <ns4:siScaleCode>{{ event_signal.measurement.scale }}</ns4:siScaleCode>
+    {% endif %}
+    {% if event_signal.measurement.power_attributes %}
+    <ns6:powerAttributes>
+      <ns6:hertz>{{ event_signal.measurement.power_attributes.hertz }}</ns6:hertz>
+      <ns6:voltage>{{ event_signal.measurement.power_attributes.voltage }}</ns6:voltage>
+      <ns6:ac>{{ event_signal.measurement.power_attributes.ac|booleanformat }}</ns6:ac>
+    </ns6:powerAttributes>
+    {% endif %}
+  </{{ event_signal.measurement.ns }}:{{ event_signal.measurement.name }}>
+  {% endif %}

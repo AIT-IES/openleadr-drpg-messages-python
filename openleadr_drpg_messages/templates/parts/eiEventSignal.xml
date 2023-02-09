@@ -1,0 +1,37 @@
+<ns1:eiEventSignal>
+    <ns8:intervals>
+    {% for interval in event_signal.intervals %}
+        <ns1:interval>
+            {% if interval.dtstart is defined and interval.dtstart is not none %}
+            <ns7:dtstart>
+                <ns7:date-time>{{ interval.dtstart|datetimeformat }}</ns7:date-time>
+            </ns7:dtstart>
+            {% endif %}
+            {% if interval.duration is defined and interval.duration is not none %}
+            <ns7:duration>
+                <ns7:duration>{{ interval.duration|timedeltaformat }}</ns7:duration>
+            </ns7:duration>
+            {% endif %}
+            <ns7:uid>
+                <ns7:text>{{ loop.index0 }}</ns7:text>
+            </ns7:uid>
+            <ns1:signalPayload>
+                <ns1:payloadFloat>
+                    <ns1:value>{{ interval.signal_payload }}</ns1:value>
+                </ns1:payloadFloat>
+            </ns1:signalPayload>
+        </ns1:interval>
+    {% endfor %}
+    </ns8:intervals>
+    <ns1:signalName>{{ event_signal.signal_name }}</ns1:signalName>
+    <ns1:signalType>{{ event_signal.signal_type }}</ns1:signalType>
+    <ns1:signalID>{{ event_signal.signal_id }}</ns1:signalID>
+    {% include 'parts/eventSignalEmix.xml' %}
+    {% if event_signal.current_value is defined and event_signal.current_value is not none %}
+    <ns1:currentValue>
+        <ns1:payloadFloat>
+            <ns1:value>{{ event_signal.current_value }}</ns1:value>
+        </ns1:payloadFloat>
+    </ns1:currentValue>
+    {% endif %}
+</ns1:eiEventSignal>

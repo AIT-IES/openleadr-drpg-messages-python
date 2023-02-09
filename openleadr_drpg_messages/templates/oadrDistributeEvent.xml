@@ -1,0 +1,16 @@
+<ns3:oadrSignedObject>
+  <ns3:oadrDistributeEvent ns1:schemaVersion="2.0b">
+    {% if response is defined and response is not none %}
+    <ns1:eiResponse>
+      <ns1:responseCode>{{ response.response_code }}</ns1:responseCode>
+      <ns1:responseDescription>{{ response.response_description }}</ns1:responseDescription>
+      <ns2:requestID>{{ response.request_id }}</ns2:requestID>
+    </ns1:eiResponse>
+    {% endif %}
+    <ns2:requestID>{{ request_id }}</ns2:requestID>
+    <ns1:vtnID>{{ vtn_id }}</ns1:vtnID>
+    {% for event in events %}
+        {% include 'parts/eiEvent.xml' %}
+    {% endfor %}
+  </ns3:oadrDistributeEvent>
+</ns3:oadrSignedObject>
