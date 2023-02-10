@@ -1,0 +1,32 @@
+<ns3:oadrReportRequest>
+  <ns1:reportRequestID>{{ report_request.report_request_id }}</ns1:reportRequestID>
+  <ns1:reportSpecifier>
+    <ns1:reportSpecifierID>{{ report_request.report_specifier.report_specifier_id }}</ns1:reportSpecifierID>
+    <ns7:granularity>
+      <ns7:duration>{{ report_request.report_specifier.granularity|timedeltaformat }}</ns7:duration>
+    </ns7:granularity>
+    {% if report_request.report_specifier.report_back_duration is defined and report_request.report_specifier.report_back_duration is not none %}
+    <ns1:reportBackDuration>
+      <ns7:duration>{{ report_request.report_specifier.report_back_duration|timedeltaformat }}</ns7:duration>
+    </ns1:reportBackDuration>
+    {% endif %}
+    {% if report_request.report_specifier.report_interval is defined and report_request.report_specifier.report_interval is not none %}
+    <ns1:reportInterval>
+      <ns7:properties>
+        <ns7:dtstart>
+          <ns7:date-time>{{ report_request.report_specifier.report_interval.dtstart|datetimeformat }}</ns7:date-time>
+        </ns7:dtstart>
+        <ns7:duration>
+          <ns7:duration>{{ report_request.report_specifier.report_interval.duration|timedeltaformat }}</ns7:duration>
+        </ns7:duration>
+      </ns7:properties>
+    </ns1:reportInterval>
+    {% endif %}
+    {% for specifier_payload in report_request.report_specifier.specifier_payloads %}
+    <ns1:specifierPayload>
+      <ns1:rID>{{ specifier_payload.r_id }}</ns1:rID>
+      <ns1:readingType>{{ specifier_payload.reading_type }}</ns1:readingType>
+    </ns1:specifierPayload>
+    {% endfor %}
+  </ns1:reportSpecifier>
+</ns3:oadrReportRequest>

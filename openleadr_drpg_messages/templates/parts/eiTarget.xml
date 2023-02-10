@@ -1,0 +1,27 @@
+<ns1:eiTarget>
+    {% if target.emix_interfaces is defined and target.emix_interfaces is not none %}
+        {% for emix_interface in target.emix_interface %}
+            {% include 'parts/emixInterface.xml' %}
+        {% endfor %}
+    {% endif %}
+
+    {% if target.group_id is defined and target.group_id is not none %}
+        <ns1:groupID>{{ target.group_id }}</ns1:groupID>
+    {% endif %}
+
+    {% if target.group_name is defined and target.group_name is not none %}
+        <ns1:groupName>{{ target.group_name }}</ns1:groupName>
+    {% endif %}
+
+    {% if target.resource_id is defined and target.resource_id is not none %}
+        <ns1:resourceID>{{ target.resource_id }}</ns1:resourceID>
+    {% endif %}
+
+    {% if target.ven_id is defined and target.ven_id is not none %}
+        <ns1:venID>{{ target.ven_id }}</ns1:venID>
+    {% endif %}
+
+    {% if target.party_id is defined and target.party_id is not none %}
+        <ns1:partyID>{{ target.party_id }}</ns1:partyID>
+    {% endif %}
+</ns1:eiTarget>

@@ -1,0 +1,41 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrCreatedPartyRegistration ns1:schemaVersion="2.0b">
+    <ns1:eiResponse>
+      <ns1:responseCode>{{ response.response_code }}</ns1:responseCode>
+      <ns1:responseDescription>{{ response.response_description }}</ns1:responseDescription>
+      <ns2:requestID>{{ response.request_id }}</ns2:requestID>
+    </ns1:eiResponse>
+    {% if registration_id is defined and registration_id is not none %}
+    <ns1:registrationID>{{ registration_id }}</ns1:registrationID>
+    {% else %}
+    <ns1:registrationID />
+    {% endif %}
+
+    {% if ven_id is defined and ven_id is not none %}
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+    {% else %}
+    <ns1:venID />
+    {% endif %}
+
+    <ns1:vtnID>{{ vtn_id }}</ns1:vtnID>
+    <ns3:oadrProfiles>
+    {% for profile in profiles %}
+      <ns3:oadrProfile>
+        <ns3:oadrProfileName>{{ profile.profile_name }}</ns3:oadrProfileName>
+        <ns3:oadrTransports>
+          {% for transport in profile.transports %}
+          <ns3:oadrTransport>
+            <ns3:oadrTransportName>{{ transport.transport_name }}</ns3:oadrTransportName>
+          </ns3:oadrTransport>
+          {% endfor %}
+        </ns3:oadrTransports>
+      </ns3:oadrProfile>
+    {% endfor %}
+    </ns3:oadrProfiles>
+    {% if requested_oadr_poll_freq is defined and requested_oadr_poll_freq is not none %}
+    <ns3:oadrRequestedOadrPollFreq>
+      <ns7:duration>{{ requested_oadr_poll_freq|timedeltaformat }}</ns7:duration>
+    </ns3:oadrRequestedOadrPollFreq>
+    {% endif %}
+  </ns3:oadrCreatedPartyRegistration>
+</ns3:oadrSignedObject>

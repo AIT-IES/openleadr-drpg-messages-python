@@ -1,0 +1,7 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrCancelOpt ns1:schemaVersion="2.0b">
+    <ns2:requestID>{{ request_id }}</ns2:requestID>
+    <ns1:optID>{{ opt_id }}</ns1:optID>
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+  </ns3:oadrCancelOpt>
+</ns3:oadrSignedObject>

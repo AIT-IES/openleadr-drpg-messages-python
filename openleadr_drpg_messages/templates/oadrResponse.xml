@@ -1,0 +1,14 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrResponse ns1:schemaVersion="2.0b">
+    <ns1:eiResponse>
+      <ns1:responseCode>{{ response.response_code }}</ns1:responseCode>
+      <ns1:responseDescription>{{ response.response_description }}</ns1:responseDescription>
+      {% if response.request_id is defined and response.request_id is not none %}
+      <ns2:requestID>{{ response.request_id }}</requestID>
+      {% else %}
+      <ns2:requestID/>
+      {% endif %}
+    </ns1:eiResponse>
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+  </ns3:oadrResponse>
+</ns3:oadrSignedObject>

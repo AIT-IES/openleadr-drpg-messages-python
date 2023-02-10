@@ -1,0 +1,37 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrCreateOpt ns1:schemaVersion="2.0b">
+    <ns1:optID>{{ opt_id }}</ns1:optID>
+    <ns1:optType>{{ opt_type }}</ns1:optType>
+    <ns1:optReason>{{ opt_reason }}</ns1:optReason>
+    {% if market_context is defined and market_context is not none %}
+    <ns10:marketContext>{{ market_context }}</ns10:marketContext>
+    {% endif %}
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+    {% if vavailability is defined and vavalailability is not none %}
+    <ns7:vavailability>
+      <ns7:components>
+        {% for component in vavailability.components %}
+        <ns7:available>
+          <ns7:properties>
+            <ns7:dtstart>
+              <ns7:date-time>{{ component.dtstart|datetimeformat }}</ns7:date-time></ns7:dtstart>
+            <ns7:duration>
+              <ns7:duration>{{ component.duration|timedeltaformat }}</ns7:duration>
+            </ns7:duration>
+          </ns7:properties>
+        </ns7:available>{% endfor %}</ns7:components>
+    </ns7:vavailability>
+    {% endif %}
+    <ns1:createdDateTime>{{ created_date_time|datetimeformat }}</ns1:createdDateTime>
+    <ns2:requestID>{{ request_id }}</ns2:requestID>
+    {% if event_id is defined and event_id is not none %}
+    <ns1:qualifiedEventID>
+      <ns1:eventID>{{ event_id }}</ns1:eventID>
+      <ns1:modificationNumber>{{ modification_number }}</ns1:modificationNumber>
+    </ns1:qualifiedEventID>
+    {% endif %}
+    {% for target in targets %}
+    {% include 'parts/eiTarget.xml' %}
+    {% endfor %}
+  </ns3:oadrCreateOpt>
+</ns3:oadrSignedObject>

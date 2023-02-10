@@ -1,0 +1,5 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrPoll ns1:schemaVersion="2.0b">
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+  </ns3:oadrPoll>
+</ns3:oadrSignedObject>

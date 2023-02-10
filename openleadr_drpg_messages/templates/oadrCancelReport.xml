@@ -1,0 +1,8 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrCancelReport ns1:schemaVersion="2.0b">
+    <ns2:requestID>{{ request_id }}</ns2:requestID>
+    <ns1:reportRequestID>{{ report_request_id }}</ns1:reportRequestID>
+    <ns2:reportToFollow>{{ report_to_follow|booleanformat }}</ns2:reportToFollow>
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+  </ns3:oadrCancelReport>
+</ns3:oadrSignedObject>

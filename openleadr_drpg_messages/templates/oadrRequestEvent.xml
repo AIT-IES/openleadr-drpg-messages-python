@@ -1,0 +1,11 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrRequestEvent ns1:schemaVersion="2.0b">
+    <ns2:eiRequestEvent>
+      <requestID>{{ request_id }}</requestID>
+      <ns1:venID>{{ ven_id }}</ns1:venID>
+      {% if reply_limit is defined and reply_limit is not none %}
+      <ns2:replyLimit>{{ reply_limit }}</ns2:replyLimit>
+      {% endif %}
+    </ns2:eiRequestEvent>
+  </ns3:oadrRequestEvent>
+</ns3:oadrSignedObject>

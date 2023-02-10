@@ -1,0 +1,15 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrCreatePartyRegistration ns1:schemaVersion="2.0b">
+    <ns2:requestID>{{ request_id }}</ns2:requestID>
+    {% if ven_id is defined and ven_id is not none %}
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+    {% endif %}
+    <ns3:oadrProfileName>{{ profile_name }}</ns3:oadrProfileName>
+    <ns3:oadrTransportName>{{ transport_name }}</ns3:oadrTransportName>
+    <ns3:oadrTransportAddress>{{ transport_address }}</ns3:oadrTransportAddress>
+    <ns3:oadrReportOnly>{{ report_only|booleanformat }}</ns3:oadrReportOnly>
+    <ns3:oadrXmlSignature>{{ xml_signature|booleanformat }}</ns3:oadrXmlSignature>
+    <ns3:oadrVenName>{{ ven_name }}</ns3:oadrVenName>
+    <ns3:oadrHttpPullModel>{{ http_pull_model|booleanformat }}</ns3:oadrHttpPullModel>
+  </ns3:oadrCreatePartyRegistration>
+</ns3:oadrSignedObject>

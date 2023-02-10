@@ -1,0 +1,34 @@
+<ns3:oadrSignedObject>
+  <ns3:oadrCreatedEvent ns1:schemaVersion="2.0b">
+    <ns2:eiCreatedEvent>
+      <ns1:eiResponse>
+        <ns1:responseCode>{{ response.response_code }}</ns1:responseCode>
+        <ns1:responseDescription>{{ response.response_description }}</ns1:responseDescription>
+        {% if (event_responses is not defined or event_responses is none) and (response.request_id is defined and response.request_id is not none) %}
+        <ns2:requestID xmlns="http://docs.oasis-open.org/ns/energyinterop/201110/payloads">{{ response.request_id }}</ns2:requestID>
+        {% else %}
+        <ns2:requestID xmlns="http://docs.oasis-open.org/ns/energyinterop/201110/payloads"></ns2:requestID>
+        {% endif %}
+      </ns1:eiResponse>
+      {% if event_responses is defined and event_responses is not none %}
+      <ns1:eventResponses>
+        {% for event_response in event_responses %}
+        <ns1:eventResponse>
+          <ns1:responseCode>{{ event_response.response_code }}</ns1:responseCode>
+          {% if event_response.response_description is defined and event_response.response_description is not none %}
+          <ns1:responseDescription>{{ event_response.response_description }}</ns1:responseDescription>
+          {% endif %}
+          <ns2:requestID xmlns="http://docs.oasis-open.org/ns/energyinterop/201110/payloads">{{ event_response.request_id }}</ns2:requestID>
+          <ns1:qualifiedEventID>
+            <ns1:eventID>{{ event_response.event_id }}</ns1:eventID>
+            <ns1:modificationNumber>{{ event_response.modification_number }}</ns1:modificationNumber>
+          </ns1:qualifiedEventID>
+          <ns1:optType>{{ event_response.opt_type }}</ns1:optType>
+        </ns1:eventResponse>
+        {% endfor %}
+      </ns1:eventResponses>
+      {% endif %}
+      <ns1:venID>{{ ven_id }}</ns1:venID>
+    </ns2:eiCreatedEvent>
+  </ns3:oadrCreatedEvent>
+</ns3:oadrSignedObject>

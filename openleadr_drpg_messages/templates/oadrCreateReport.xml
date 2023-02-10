@@ -1,0 +1,9 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrCreateReport ns1:schemaVersion="2.0b">
+    <ns2:requestID>{{ request_id }}</ns2:requestID>
+    {% for report_request in report_requests %}
+    {% include 'parts/oadrReportRequest.xml' %}
+    {% endfor %}
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+  </ns3:oadrCreateReport>
+</ns3:oadrSignedObject>

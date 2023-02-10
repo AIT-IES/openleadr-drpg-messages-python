@@ -1,0 +1,15 @@
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
+  <ns3:oadrRegisteredReport ns1:schemaVersion="2.0b">
+    <ns1:eiResponse>
+      <ns1:responseCode>{{ response.response_code }}</ns1:responseCode>
+      <ns1:responseDescription>{{ response.response_description }}</ns1:responseDescription>
+      <ns2:requestID>{{ response.request_id }}</ns2:requestID>
+    </ns1:eiResponse>
+    {% for report_request in report_requests %}
+    {% include 'parts/oadrReportRequest.xml' %}
+    {% endfor %}
+    {% if ven_id is defined and ven_id is not none %}
+    <ns1:venID>{{ ven_id }}</ns1:venID>
+    {% endif %}
+  </ns3:oadrRegisteredReport>
+</ns3:oadrSignedObject>
