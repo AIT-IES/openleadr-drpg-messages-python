@@ -1,6 +1,6 @@
 <ns3:oadrSignedObject>
-  <ns3:oadrUpdateReport>
-    <ns1:requestID>{{ request_id }}</ns1:requestID>
+  <ns3:oadrUpdateReport ns1:schemaVersion="2.0b">
+    <ns2:requestID>{{ request_id }}</ns2:requestID>
     {% if reports %}
     {% for report in reports %}
     <ns3:oadrReport>

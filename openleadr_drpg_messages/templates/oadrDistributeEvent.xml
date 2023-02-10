@@ -1,4 +1,4 @@
-<ns3:oadrSignedObject>
+<ns3:oadrSignedObject ns3:Id="oadrSignedObject">
   <ns3:oadrDistributeEvent ns1:schemaVersion="2.0b">
     {% if response is defined and response is not none %}
     <ns1:eiResponse>

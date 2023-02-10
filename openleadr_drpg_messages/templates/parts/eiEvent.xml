@@ -1,4 +1,4 @@
-<ns2:oadrEvent>
+<ns3:oadrEvent>
     <ns1:eiEvent>
         {% include 'parts/eiEventDescriptor.xml' %}
         {% include 'parts/eiActivePeriod.xml' %}
@@ -19,4 +19,4 @@
         {% endif %}
     </ns1:eiEvent>
     <ns3:oadrResponseRequired>{{ event.response_required }}</ns3:oadrResponseRequired>
-</ns2:oadrEvent>
+</ns3:oadrEvent>
